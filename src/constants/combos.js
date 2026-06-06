@@ -1,7 +1,7 @@
 /**
  * @description Combos oficiales con ahorro positivo y coherente.
  * @author Lincar Media Studio
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 export const combos = [
@@ -9,9 +9,9 @@ export const combos = [
     id: 'combo-inicio-digital',
     title: 'Combo Inicio Digital',
     includes: ['Pack Inicio PYME', 'Pack Gráfico sin Community Manager'],
-    originalPrice: 10800,
+    originalPrice: 11800,
     price: 9900,
-    savings: 900,
+    savings: 1900,
     badge: '',
     highlighted: false,
     features: [
@@ -25,8 +25,8 @@ export const combos = [
     id: 'combo-pyme-activa',
     title: 'Combo PYME Activa',
     includes: ['Pack Frecuencia Plus', 'Pack CM + Gráfico'],
-    originalPrice: 15800,
-    price: 14500,
+    originalPrice: 16800,
+    price: 14900,
     savings: 1900,
     badge: 'RECOMENDADO',
     highlighted: true,
@@ -41,8 +41,8 @@ export const combos = [
     id: 'combo-premium-integral',
     title: 'Combo Premium Integral',
     includes: ['Pack Premium Dinámico', 'Pack CM + Gráfico'],
-    originalPrice: 18800,
-    price: 17000,
+    originalPrice: 19800,
+    price: 17900,
     savings: 1900,
     badge: 'OFERTA ESTRELLA',
     highlighted: true,
@@ -63,9 +63,9 @@ export const eliteCombo = {
   badge: 'CUPOS LIMITADOS',
   urgency: 'Solo 5 cupos disponibles por mes',
   counter: '3 de 5 cupos disponibles este mes',
-  originalPrice: 21000,
-  price: 18500,
-  savings: 2500,
+  originalPrice: 22000,
+  price: 18900,
+  savings: 3100,
   includes: [
     'Pack Premium Dinámico completo: cámara + Osmo + Ray-Ban Meta + Dron*',
     'Pack Community Manager + 25 piezas gráficas',

@@ -3,7 +3,10 @@
 
 .section {
   padding: @space-2xl 0;
-  background: @bg-primary;
+  background:
+    radial-gradient(circle at 15% 0%, fade(@color-blue, 10%) 0%, transparent 32%),
+    radial-gradient(circle at 85% 8%, fade(@color-magenta, 9%) 0%, transparent 34%),
+    @bg-primary;
 }
 
 .inner {
@@ -15,17 +18,94 @@
   text-align: center;
 }
 
+.addonBanner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: @space-lg;
+  align-items: center;
+  margin-bottom: @space-lg;
+  padding: @space-lg;
+  border: 1px solid fade(@color-cyan, 18%);
+  border-radius: @radius-lg;
+  background:
+    linear-gradient(135deg, fade(@color-blue, 11%) 0%, fade(@color-violet, 8%) 50%, fade(@color-magenta, 10%) 100%),
+    fade(@bg-card, 92%);
+  box-shadow: 0 22px 60px fade(#000000, 24%);
+
+  span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: fade(@color-cyan, 10%);
+    color: @color-cyan;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    display: block;
+    color: @text-primary;
+    font-family: @font-display;
+    font-size: 24px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    max-width: 720px;
+    margin: 10px 0 0;
+    color: @text-secondary;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.addonCost {
+  min-width: 230px;
+  padding: @space-md;
+  border: 1px solid fade(#ffffff, 10%);
+  border-radius: @radius-md;
+  background: fade(@bg-primary, 48%);
+  text-align: right;
+
+  span {
+    margin: 0 0 8px auto;
+    background: fade(#ffffff, 7%);
+    color: @text-secondary;
+  }
+
+  strong {
+    font-family: @font-data;
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  em {
+    display: block;
+    margin-top: 8px;
+    color: @text-muted;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+}
+
 .tableWrap {
   overflow-x: auto;
   border: 1px solid fade(#ffffff, 9%);
   border-radius: @radius-lg;
-  background: fade(@bg-card, 92%);
+  background:
+    linear-gradient(180deg, fade(@bg-card-alt, 48%) 0%, fade(@bg-card, 96%) 100%);
   box-shadow: 0 24px 70px fade(#000000, 26%);
 }
 
 .table {
   width: 100%;
-  min-width: 980px;
+  min-width: 1180px;
   border-collapse: collapse;
 
   th,
@@ -33,14 +113,20 @@
     padding: 18px 16px;
     border-bottom: 1px solid fade(#ffffff, 8%);
     text-align: left;
+    vertical-align: top;
   }
 
   th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: fade(@bg-card-alt, 96%);
     color: @text-secondary;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
   td {
@@ -49,16 +135,14 @@
     line-height: 1.45;
   }
 
-  td:first-child {
-    color: @text-primary;
-    font-weight: 900;
-  }
+  tr {
+    transition:
+      background @tr-base,
+      transform @tr-base;
 
-  td:last-child {
-    color: @text-primary;
-    font-family: @font-data;
-    font-weight: 900;
-    white-space: nowrap;
+    &:hover {
+      background: fade(#ffffff, 3%);
+    }
   }
 
   tr:last-child td {
@@ -66,9 +150,160 @@
   }
 }
 
+.packageCell {
+  display: grid;
+  gap: 7px;
+  min-width: 190px;
+
+  strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: @text-primary;
+    font-family: @font-display;
+    font-size: 16px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+
+    svg {
+      color: @color-cyan;
+      font-size: 13px;
+    }
+  }
+
+  em {
+    width: fit-content;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: @color-promo;
+    color: #fff;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  small {
+    max-width: 230px;
+    color: @text-muted;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}
+
+.typeBadge {
+  width: fit-content;
+  padding: 5px 8px;
+  border: 1px solid fade(@color-cyan, 18%);
+  border-radius: 999px;
+  background: fade(@color-cyan, 7%);
+  color: @color-cyan;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 7px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+
+  svg {
+    font-size: 10px;
+  }
+}
+
+.statusPositive {
+  background: fade(@color-success, 11%);
+  color: @color-success;
+}
+
+.statusMuted {
+  background: fade(#ffffff, 6%);
+  color: @text-muted;
+}
+
+.basePrice,
+.addonPrice {
+  display: grid;
+  gap: 5px;
+  min-width: 130px;
+
+  strong {
+    color: @text-primary;
+    font-family: @font-data;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  span {
+    color: @text-muted;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+
+.addonPrice {
+  strong {
+    .brand-text();
+  }
+}
+
 .featuredRow {
-  border-left: 3px solid @color-cyan;
-  background: fade(@bg-card-alt, 62%);
+  position: relative;
+  background:
+    linear-gradient(90deg, fade(@color-blue, 10%) 0%, fade(@color-violet, 8%) 55%, fade(@color-magenta, 9%) 100%);
+
+  td:first-child {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      background: @gradient-brand;
+      content: '';
+    }
+  }
+}
+
+.compactRow {
+  background: fade(@color-cyan, 3%);
+}
+
+.disclaimer {
+  max-width: 900px;
+  margin: @space-md auto 0;
+  color: @text-muted;
+  font-size: 12px;
+  line-height: 1.65;
+  text-align: center;
+}
+
+@media (max-width: @bp-md) {
+  .addonBanner {
+    grid-template-columns: 1fr;
+  }
+
+  .addonCost {
+    width: 100%;
+    text-align: left;
+
+    span {
+      margin-left: 0;
+    }
+  }
 }
 
 @media (max-width: @bp-sm) {
@@ -77,6 +312,14 @@
     border: 0;
     background: transparent;
     box-shadow: none;
+  }
+
+  .addonBanner {
+    padding: @space-lg;
+
+    strong {
+      font-size: 21px;
+    }
   }
 
   .table {
@@ -94,14 +337,16 @@
       padding: @space-md;
       border: 1px solid fade(#ffffff, 9%);
       border-radius: @radius-md;
-      background: @bg-card;
+      background:
+        linear-gradient(180deg, fade(@bg-card-alt, 42%) 0%, fade(@bg-card, 95%) 100%);
+      box-shadow: 0 18px 42px fade(#000000, 18%);
     }
 
     td {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 0.85fr 1.15fr;
       gap: @space-md;
-      padding: 10px 0;
+      padding: 11px 0;
       border-bottom: 1px solid fade(#ffffff, 8%);
     }
 
@@ -109,14 +354,35 @@
       content: attr(data-label);
       color: @text-muted;
       font-family: @font-body;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
+    }
+
+    td:first-child {
+      grid-template-columns: 1fr;
+
+      &::before {
+        display: none;
+      }
     }
 
     td:last-child {
       border-bottom: 0;
+      white-space: normal;
+    }
+
+    .featuredRow {
+      border-color: fade(@color-cyan, 36%);
+      background:
+        linear-gradient(180deg, fade(@color-blue, 10%) 0%, fade(@bg-card, 96%) 100%);
+    }
+  }
+
+  .basePrice,
+  .addonPrice {
+    strong {
       white-space: normal;
     }
   }

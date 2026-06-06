@@ -26,7 +26,7 @@
   display: flex;
   min-height: 100%;
   flex-direction: column;
-  padding: @space-lg;
+  padding: 28px;
   border-radius: @radius-lg;
 }
 
@@ -36,103 +36,336 @@
 
 .topline {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   gap: @space-md;
+  margin-bottom: @space-md;
 
   h3 {
+    max-width: 320px;
     margin: 0;
     font-family: @font-display;
-    font-size: 30px;
-    line-height: 1.05;
-    letter-spacing: -0.04em;
+    font-size: 28px;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
   }
 
   p {
-    margin: @space-sm 0 0;
+    margin: 9px 0 0;
     color: @text-secondary;
+    font-size: 14px;
   }
 
   > span {
     width: fit-content;
     height: fit-content;
-    padding: 7px 9px;
-    border-radius: @radius-sm;
+    padding: 8px 10px;
+    border-radius: 999px;
     background: @color-promo;
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 900;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     white-space: nowrap;
+    box-shadow: 0 10px 26px fade(@color-promo, 24%);
   }
 }
 
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 @space-md;
+}
+
 .toggle {
+  position: relative;
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  gap: @space-sm;
-  margin-top: @space-lg;
-  padding: 10px 12px;
+  gap: 9px;
+  min-height: 38px;
+  padding: 7px 12px 7px 8px;
   border: 1px solid fade(#ffffff, 10%);
   border-radius: 999px;
-  background: fade(#ffffff, 5%);
+  background: fade(#ffffff, 4%);
   color: @text-secondary;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   cursor: pointer;
+  transition:
+    border-color @tr-base,
+    background @tr-base,
+    color @tr-base;
 
-  input {
-    width: 18px;
-    height: 18px;
-    accent-color: @color-cyan;
+  &:hover {
+    border-color: fade(@color-cyan, 28%);
+    background: fade(@color-cyan, 7%);
+    color: @text-primary;
+  }
+}
+
+.toggleInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+
+  &:checked + .switchTrack {
+    border-color: fade(@color-cyan, 45%);
+    background: fade(@color-cyan, 18%);
+
+    .switchThumb {
+      transform: translateX(16px);
+      background: @color-cyan;
+      box-shadow: 0 0 16px fade(@color-cyan, 45%);
+    }
+  }
+
+  &:focus-visible + .switchTrack {
+    outline: 2px solid fade(@color-cyan, 65%);
+    outline-offset: 3px;
+  }
+}
+
+.switchTrack {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 20px;
+  align-items: center;
+  border: 1px solid fade(#ffffff, 14%);
+  border-radius: 999px;
+  background: fade(#ffffff, 8%);
+  transition:
+    border-color @tr-base,
+    background @tr-base;
+}
+
+.switchThumb {
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  border-radius: 999px;
+  background: fade(#ffffff, 72%);
+  transition:
+    transform @tr-base,
+    background @tr-base,
+    box-shadow @tr-base;
+}
+
+.featureText {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.infoHint {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  line-height: 1;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus-within {
+    .infoButton {
+      border-color: fade(@color-cyan, 90%);
+      background: @color-cyan;
+      color: @bg-primary;
+      box-shadow:
+        0 0 0 4px fade(@color-cyan, 10%),
+        0 0 18px fade(@color-cyan, 28%);
+      transform: translateY(-1px);
+    }
+
+    .infoBubble {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}
+
+.infoHintToggle {
+  margin-left: 2px;
+}
+
+.infoButton {
+  .button-reset();
+  display: inline-flex;
+  width: 17px;
+  height: 17px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid fade(@color-cyan, 48%);
+  border-radius: 999px;
+  background: fade(@color-cyan, 8%);
+  color: @color-cyan;
+  font-family: @font-data;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: help;
+  transform: translateY(0);
+  transition:
+    color @tr-fast,
+    background @tr-fast,
+    border-color @tr-fast,
+    box-shadow @tr-fast,
+    transform @tr-fast;
+
+  &:focus-visible {
+    .focus-ring();
+  }
+}
+
+.infoBubble {
+  position: absolute;
+  z-index: 30;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  width: min(300px, 78vw);
+  padding: 12px 13px;
+  border: 1px solid fade(@color-cyan, 18%);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, fade(@bg-card-alt, 98%) 0%, fade(@bg-primary, 98%) 100%);
+  box-shadow:
+    0 18px 48px fade(#000000, 48%),
+    0 0 0 1px fade(#ffffff, 4%);
+  color: @text-secondary;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.55;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(6px);
+  transition:
+    opacity @tr-base,
+    visibility @tr-base,
+    transform @tr-base;
+
+  &::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid fade(@color-cyan, 18%);
+    border-bottom: 1px solid fade(@color-cyan, 18%);
+    background: fade(@bg-primary, 98%);
+    content: '';
+    transform: translate(-50%, -5px) rotate(45deg);
   }
 }
 
 .priceBlock {
   display: grid;
-  gap: @space-xs;
-  margin: @space-lg 0;
+  gap: 5px;
+  margin: @space-md 0 @space-lg;
 
   small,
   em {
     color: @text-secondary;
     font-style: normal;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   strong {
+    color: @text-primary;
     font-family: @font-data;
     font-size: 36px;
-    line-height: 1;
-    letter-spacing: -0.04em;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
   }
+}
+
+.originalPrice {
+  width: fit-content;
+  color: @text-muted;
+  font-size: 12px;
+  text-decoration: line-through;
+  opacity: 0.82;
 }
 
 .features {
   display: grid;
-  gap: 12px;
+  gap: 11px;
   margin-bottom: @space-lg;
 
   li {
     display: grid;
-    grid-template-columns: 18px 1fr;
+    grid-template-columns: 17px 1fr;
     gap: 10px;
     color: @text-secondary;
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   svg {
     margin-top: 4px;
     color: @color-cyan;
+    font-size: 12px;
+  }
+}
+
+.scopeBox {
+  margin: 0 0 @space-lg;
+  padding: 14px 15px;
+  border: 1px solid fade(#ffffff, 8%);
+  border-radius: @radius-md;
+  background:
+    linear-gradient(180deg, fade(#ffffff, 4%) 0%, fade(#ffffff, 2%) 100%);
+  color: @text-secondary;
+
+  strong {
+    display: block;
+    margin-bottom: 9px;
+    color: @text-primary;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  div {
+    display: grid;
+    gap: 6px;
+  }
+
+  p {
+    position: relative;
+    margin: 0;
+    padding-left: 12px;
+    color: @text-secondary;
+    font-size: 12px;
+    line-height: 1.45;
+
+    &::before {
+      position: absolute;
+      top: 0.65em;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: fade(@color-cyan, 75%);
+      content: '';
+    }
   }
 }
 
 .note {
   margin: auto 0 @space-md;
   color: @text-muted;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
 .cta {
@@ -145,11 +378,15 @@
   background: @gradient-brand;
   color: #fff;
   font-weight: 900;
-  transition: filter @tr-base, transform @tr-base;
+  transition:
+    filter @tr-base,
+    transform @tr-base,
+    box-shadow @tr-base;
 
   &:hover {
     filter: brightness(1.1);
     transform: translateY(-2px);
+    box-shadow: 0 14px 35px fade(@color-blue, 24%);
   }
 }
 
@@ -160,7 +397,44 @@
 }
 
 @media (max-width: @bp-sm) {
+  .card {
+    padding: @space-lg;
+  }
+
   .topline {
     flex-direction: column;
+
+    h3 {
+      font-size: 26px;
+    }
+  }
+
+  .toggleRow {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .featureText {
+    align-items: flex-start;
+  }
+
+  .infoBubble {
+    left: auto;
+    right: -6px;
+    width: min(280px, calc(100vw - 48px));
+    transform: translateX(0) translateY(6px);
+
+    &::after {
+      left: auto;
+      right: 10px;
+      transform: translate(0, -5px) rotate(45deg);
+    }
+  }
+
+  .infoHint:hover,
+  .infoHint:focus-within {
+    .infoBubble {
+      transform: translateX(0) translateY(0);
+    }
   }
 }
