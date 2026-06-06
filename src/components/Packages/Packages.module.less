@@ -1,0 +1,28 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.section {
+  padding: @space-2xl 0;
+  background: @gradient-soft;
+}
+
+.inner {
+  .section-shell();
+}
+
+.header {
+  margin: 0 auto @space-xl;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: @space-lg;
+}
+
+@media (max-width: @bp-md) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

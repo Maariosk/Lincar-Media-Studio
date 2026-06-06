@@ -1,0 +1,150 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.footer {
+  padding: @space-2xl 0 @space-xl;
+  background:
+    radial-gradient(circle at 15% 0%, fade(@color-blue, 18%), transparent 28%),
+    radial-gradient(circle at 85% 0%, fade(@color-magenta, 12%), transparent 32%),
+    @bg-primary;
+}
+
+.inner {
+  .section-shell();
+}
+
+.brandColumn {
+  display: grid;
+  max-width: 380px;
+  gap: @space-sm;
+
+  strong {
+    margin-top: @space-md;
+    font-family: @font-display;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    margin: 0;
+    color: @text-secondary;
+  }
+}
+
+.logoFrame {
+  display: grid;
+  place-items: center;
+  width: fit-content;
+  max-width: 290px;
+  padding: 8px 14px;
+  border: 1px solid fade(#ffffff, 42%);
+  border-radius: @radius-md;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 36px fade(@color-blue, 15%);
+
+  img {
+    width: auto;
+    max-height: 56px;
+    object-fit: contain;
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: @space-xl;
+  margin-top: @space-xl;
+
+  h3 {
+    margin: 0 0 @space-md;
+    color: @text-primary;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  a,
+  button {
+    .button-reset();
+    display: block;
+    margin-bottom: 12px;
+    color: @text-secondary;
+    font-size: 15px;
+    transition: color @tr-base;
+
+    &:hover {
+      color: @text-primary;
+    }
+
+    &:focus-visible {
+      .focus-ring();
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: @space-sm;
+
+  a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    border: 1px solid fade(#ffffff, 10%);
+    border-radius: 999px;
+    background: fade(#ffffff, 5%);
+    font-size: 22px;
+    transition: filter @tr-base, transform @tr-base, background @tr-base;
+
+    &:hover {
+      background: fade(#ffffff, 10%);
+      filter: brightness(1.2);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.youtube {
+  color: @color-youtube;
+}
+
+.tiktok {
+  color: #fff;
+}
+
+.instagram {
+  color: @color-instagram-a;
+}
+
+.facebook {
+  color: @color-facebook;
+}
+
+.whatsapp {
+  color: @color-whatsapp;
+}
+
+.legal {
+  display: grid;
+  gap: @space-sm;
+  margin-top: @space-xl;
+  padding-top: @space-lg;
+  border-top: 1px solid fade(#ffffff, 10%);
+
+  p {
+    margin: 0;
+    color: @text-muted;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: @bp-md) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}

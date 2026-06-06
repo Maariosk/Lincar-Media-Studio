@@ -1,0 +1,146 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.section {
+  padding: @space-2xl 0;
+  background: @bg-card;
+}
+
+.inner {
+  .section-shell();
+}
+
+.header {
+  margin: 0 auto @space-xl;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: @space-lg;
+}
+
+.platformCard {
+  .card-surface();
+  position: relative;
+  min-height: 100%;
+  padding: @space-lg;
+  overflow: hidden;
+  border-radius: @radius-lg;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 15% 0%, fade(@color-blue, 12%), transparent 35%);
+    content: '';
+    pointer-events: none;
+  }
+
+  h4 {
+    margin: 0 0 @space-md;
+    color: @text-primary;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    display: grid;
+    gap: 10px;
+  }
+
+  li {
+    position: relative;
+    padding-left: 16px;
+    color: @text-secondary;
+    font-size: 14px;
+    line-height: 1.5;
+
+    &::before {
+      position: absolute;
+      top: 0.68em;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: @color-cyan;
+      content: '';
+    }
+  }
+}
+
+.platformTopline,
+.platformColumns,
+.footerNote {
+  position: relative;
+  z-index: 1;
+}
+
+.platformTopline {
+  display: flex;
+  align-items: center;
+  gap: @space-md;
+  margin-bottom: @space-lg;
+
+  h3 {
+    margin: 0;
+    font-family: @font-display;
+    font-size: 30px;
+    letter-spacing: -0.04em;
+  }
+}
+
+.platformIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid fade(#ffffff, 10%);
+  border-radius: 999px;
+  background: fade(#000000, 22%);
+  font-size: 40px;
+}
+
+.platformColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: @space-lg;
+}
+
+.footerNote {
+  margin: @space-lg 0 0;
+  padding: @space-md;
+  border: 1px solid fade(#ffffff, 8%);
+  border-radius: @radius-md;
+  background: fade(#000000, 18%);
+  color: @text-muted;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.youtube .platformIcon {
+  color: @color-youtube;
+}
+
+.tiktok .platformIcon {
+  background: @color-tiktok-bg;
+  color: #fff;
+}
+
+.instagram .platformIcon {
+  background: linear-gradient(135deg, fade(@color-instagram-a, 28%), fade(@color-instagram-b, 28%));
+  color: @color-instagram-a;
+}
+
+.facebook .platformIcon {
+  color: @color-facebook;
+}
+
+@media (max-width: @bp-md) {
+  .grid,
+  .platformColumns {
+    grid-template-columns: 1fr;
+  }
+}

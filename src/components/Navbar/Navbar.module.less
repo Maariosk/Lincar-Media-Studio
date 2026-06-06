@@ -1,0 +1,221 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  border-bottom: 1px solid transparent;
+  background: fade(@bg-primary, 22%);
+  transition: background @tr-base, border-color @tr-base, box-shadow @tr-base;
+}
+
+.scrolled {
+  border-bottom-color: fade(#ffffff, 8%);
+  background: fade(@bg-primary, 86%);
+  box-shadow: 0 16px 50px fade(#000000, 22%);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  .section-shell();
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  gap: @space-lg;
+}
+
+.logoButton {
+  .button-reset();
+  flex: 0 0 auto;
+
+  &:focus-visible {
+    .focus-ring();
+  }
+}
+
+.logoFrame {
+  display: grid;
+  place-items: center;
+  min-width: 184px;
+  height: 46px;
+  padding: 6px 12px;
+  border: 1px solid fade(#ffffff, 42%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 30px fade(@color-blue, 14%);
+}
+
+.logoHorizontal {
+  width: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.logoMobile {
+  display: none;
+  width: auto;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: @space-xs;
+  margin-left: auto;
+
+  button {
+    .button-reset();
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: @text-secondary;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: color @tr-base, background @tr-base;
+
+    &:hover {
+      background: fade(#ffffff, 7%);
+      color: @text-primary;
+    }
+
+    &:focus-visible {
+      .focus-ring();
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: @space-sm;
+}
+
+.whatsapp {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid fade(@color-whatsapp, 32%);
+  border-radius: 999px;
+  background: fade(@color-whatsapp, 10%);
+  color: @color-whatsapp;
+  font-size: 22px;
+  transition: transform @tr-base, filter @tr-base, background @tr-base;
+
+  &:hover {
+    background: fade(@color-whatsapp, 18%);
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    .focus-ring();
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: @gradient-brand;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow: 0 14px 32px fade(@color-blue, 28%);
+  transition: filter @tr-base, transform @tr-base;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    .focus-ring();
+  }
+}
+
+.menuButton {
+  .button-reset();
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid fade(#ffffff, 10%);
+  border-radius: 999px;
+  background: fade(#ffffff, 5%);
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 3px auto;
+    border-radius: 999px;
+    background: @text-primary;
+  }
+}
+
+@media (max-width: @bp-md) {
+  .links {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 20px;
+    display: none;
+    width: min(310px, calc(100vw - 40px));
+    padding: @space-md;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1px solid fade(#ffffff, 10%);
+    border-radius: @radius-lg;
+    background: fade(@bg-primary, 96%);
+    box-shadow: 0 30px 80px fade(#000000, 34%);
+    backdrop-filter: blur(16px);
+
+    button {
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  .linksOpen {
+    display: flex;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}
+
+@media (max-width: @bp-sm) {
+  .inner {
+    min-height: 66px;
+    width: min(100% - 24px, 1180px);
+  }
+
+  .logoFrame {
+    min-width: 52px;
+    width: 52px;
+    height: 46px;
+    padding: 5px;
+  }
+
+  .logoHorizontal {
+    display: none;
+  }
+
+  .logoMobile {
+    display: block;
+  }
+
+  .cta {
+    display: none;
+  }
+}

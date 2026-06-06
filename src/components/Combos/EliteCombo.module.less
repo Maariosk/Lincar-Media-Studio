@@ -1,0 +1,203 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.elite {
+  .card-surface();
+  .gradient-border(@radius-xl);
+  position: relative;
+  margin-top: @space-xl;
+  padding: @space-xl;
+  overflow: hidden;
+  border-radius: @radius-xl;
+  background:
+    radial-gradient(circle at 20% 0%, fade(@color-cyan, 17%), transparent 26%),
+    radial-gradient(circle at 90% 10%, fade(@color-magenta, 17%), transparent 30%),
+    @bg-card-alt;
+
+  &::after {
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 999px;
+    background: @gradient-brand;
+    content: '';
+    filter: blur(60px);
+    opacity: 0.16;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  padding: 9px 12px;
+  border-radius: @radius-sm;
+  background: @color-promo;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.header,
+.layout,
+.note {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  max-width: 680px;
+
+  h3 {
+    margin: @space-sm 0;
+    font-family: @font-display;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  p {
+    display: inline-flex;
+    margin: @space-md 0 0;
+    padding: 10px 12px;
+    border: 1px solid fade(@color-cyan, 22%);
+    border-radius: 999px;
+    background: fade(@color-cyan, 8%);
+    color: @color-cyan;
+    font-size: 14px;
+    font-weight: 900;
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-sm;
+  color: @color-cyan;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: @space-xl;
+  align-items: end;
+  margin-top: @space-xl;
+}
+
+.includes {
+  display: grid;
+  gap: 13px;
+
+  li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: @space-sm;
+    color: @text-secondary;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  svg {
+    margin-top: 4px;
+    color: @color-cyan;
+  }
+}
+
+.priceBox {
+  display: grid;
+  gap: @space-sm;
+  padding: @space-lg;
+  border: 1px solid fade(#ffffff, 12%);
+  border-radius: @radius-lg;
+  background: fade(@bg-primary, 62%);
+}
+
+.original {
+  color: @text-muted;
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.priceBox strong {
+  font-family: @font-data;
+  font-size: clamp(42px, 5vw, 58px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.priceBox em {
+  color: @text-secondary;
+  font-style: normal;
+}
+
+.savings {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: fade(@color-success, 14%);
+  color: @color-success;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.cta,
+.call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: @radius-md;
+  font-weight: 900;
+  transition: filter @tr-base, transform @tr-base;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.cta {
+  margin-top: @space-sm;
+  background: @gradient-brand;
+  color: #fff;
+}
+
+.call {
+  gap: @space-sm;
+  border: 1px solid fade(#ffffff, 12%);
+  background: fade(#ffffff, 5%);
+  color: @text-primary;
+  font-size: 14px;
+}
+
+.note {
+  margin: @space-lg 0 0;
+  color: @text-muted;
+  font-size: 12px;
+}
+
+@media (max-width: @bp-md) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: @bp-sm) {
+  .elite {
+    padding: @space-lg;
+  }
+
+  .badge {
+    position: static;
+    width: fit-content;
+    margin-bottom: @space-md;
+  }
+}

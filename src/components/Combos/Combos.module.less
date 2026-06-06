@@ -1,0 +1,153 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.section {
+  padding: @space-2xl 0;
+  background: @gradient-soft;
+}
+
+.inner {
+  .section-shell();
+}
+
+.header {
+  margin: 0 auto @space-xl;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: @space-lg;
+}
+
+.card {
+  .card-surface();
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding: @space-lg;
+  border-radius: @radius-lg;
+}
+
+.highlighted {
+  .gradient-border(@radius-lg);
+}
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  gap: @space-md;
+
+  h3 {
+    margin: 0;
+    font-family: @font-display;
+    font-size: 28px;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  span {
+    flex: 0 0 auto;
+    height: fit-content;
+    padding: 7px 9px;
+    border-radius: @radius-sm;
+    background: @color-promo;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+}
+
+.includes {
+  margin: @space-md 0;
+  color: @text-secondary;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.priceBlock {
+  display: grid;
+  gap: @space-xs;
+
+  span {
+    color: @text-muted;
+    text-decoration: line-through;
+  }
+
+  strong {
+    font-family: @font-data;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  em {
+    color: @text-secondary;
+    font-style: normal;
+    font-size: 13px;
+  }
+}
+
+.savings {
+  display: inline-flex;
+  width: fit-content;
+  margin: @space-md 0;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: fade(@color-success, 13%);
+  color: @color-success;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.card ul {
+  display: grid;
+  gap: 10px;
+  margin-bottom: @space-lg;
+
+  li {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: @space-sm;
+    color: @text-secondary;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  svg {
+    margin-top: 3px;
+    color: @color-cyan;
+  }
+}
+
+.note {
+  margin: auto 0 @space-md;
+  color: @text-muted;
+  font-size: 12px;
+}
+
+.card > a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  border-radius: @radius-md;
+  background: @gradient-brand;
+  color: #fff;
+  font-weight: 900;
+  transition: filter @tr-base, transform @tr-base;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: @bp-md) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
