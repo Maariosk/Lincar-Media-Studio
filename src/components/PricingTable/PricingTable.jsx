@@ -98,7 +98,7 @@ const rows = [
     graphics: '25',
     cm: true,
     platforms: 'Instagram + Facebook',
-    price: 15900,
+    price: 15800,
     addonAvailable: true,
     recommended: true
   },
@@ -110,7 +110,7 @@ const rows = [
     graphics: '25',
     cm: true,
     platforms: 'Instagram + Facebook',
-    price: 17900,
+    price: 18800,
     addonAvailable: true
   },
   {
@@ -121,7 +121,7 @@ const rows = [
     graphics: '25 + thumbnails',
     cm: true,
     platforms: 'YouTube + TikTok + IG + FB',
-    price: 18900,
+    price: 20000,
     addonIncluded: true,
     featured: true
   }
