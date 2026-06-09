@@ -10,8 +10,8 @@ export const combos = [
     title: 'Combo Inicio Digital',
     includes: ['Pack Inicio PYME', 'Pack Gráfico sin Community Manager'],
     originalPrice: 11800,
-    price: 9900,
-    savings: 1900,
+    price: 10800,
+    savings: 1000,
     badge: '',
     highlighted: false,
     features: [

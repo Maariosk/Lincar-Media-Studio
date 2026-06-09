@@ -87,7 +87,7 @@ const rows = [
     graphics: '25',
     cm: false,
     platforms: 'Instagram + Facebook',
-    price: 9900,
+    price: 10800,
     addonAvailable: true
   },
   {
